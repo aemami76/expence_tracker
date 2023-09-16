@@ -1,16 +1,16 @@
 # expence_tracker
 
-A new Flutter project.
+A Flutter project using responsive, adaptive, dismissible widgets.
+with clean architecture.
 
-## Getting Started
+Menu with a dark theme
+![image](https://github.com/aemami76/expence_tracker/assets/137769785/d36c0c1d-65d0-4513-964c-bde83bda76fe)
 
-This project is a starting point for a Flutter application.
+Menu with blue theme Rotated
+![image](https://github.com/aemami76/expence_tracker/assets/137769785/b2436134-ed2d-4498-af10-2f4b49264fa3)
 
-A few resources to get you started if this is your first Flutter project:
+AddScreen with a purple theme
+![image](https://github.com/aemami76/expence_tracker/assets/137769785/d2e889ee-f31e-49b7-826e-d47e0620d4ad)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Empty page Screen Rotated With red theme
+![image](https://github.com/aemami76/expence_tracker/assets/137769785/914126e8-0f05-48b7-b326-cd56721a2eda)
