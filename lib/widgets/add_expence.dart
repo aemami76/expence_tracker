@@ -73,166 +73,165 @@ class _AddExpenceState extends State<AddExpence> {
       var H = constraint.maxHeight;
       var W = constraint.maxWidth;
 
-      return SafeArea(
-        child: SizedBox(
-          width: double.infinity,
-          height: double.infinity,
+      return SizedBox(
+        width: double.infinity,
+        height: double.infinity,
+        child: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.fromLTRB(16, 8, 16, 8 + _keyboardSpace),
-              child: Expanded(
-                  child: H > W
-                      ? Column(
+              padding: EdgeInsets.fromLTRB(16, 16, 16, 8 + _keyboardSpace),
+              child: H > W
+                  ? Column(
+                      children: [
+                        TextField(
+                          controller: _controllerT,
+                          maxLength: 50,
+                          decoration: InputDecoration(label: Text('title')),
+                        ),
+                        Row(
                           children: [
-                            TextField(
-                              controller: _controllerT,
-                              maxLength: 50,
-                              decoration: InputDecoration(label: Text('title')),
-                            ),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: TextField(
-                                    controller: _controllerA,
-                                    maxLength: 10,
-                                    keyboardType: TextInputType.number,
-                                    decoration: InputDecoration(
-                                      prefixText: "\$ ",
-                                      labelText: "amount",
-                                    ),
-                                  ),
+                            Expanded(
+                              child: TextField(
+                                controller: _controllerA,
+                                maxLength: 10,
+                                keyboardType: TextInputType.number,
+                                decoration: InputDecoration(
+                                  prefixText: "\$ ",
+                                  labelText: "amount",
                                 ),
-                                Expanded(
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Text(_selectedDate == null
-                                          ? "Select Date"
-                                          : "${_selectedDate.toString().substring(0, 10)}"),
-                                      IconButton(
-                                        icon: Icon(Icons.calendar_month),
-                                        onPressed: _showDater,
+                              ),
+                            ),
+                            Expanded(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(_selectedDate == null
+                                      ? "Select Date"
+                                      : "${_selectedDate.toString().substring(0, 10)}"),
+                                  IconButton(
+                                    icon: Icon(Icons.calendar_month),
+                                    onPressed: _showDater,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            DropdownButton(
+                                value: _selectedC,
+                                items: Category.values
+                                    .map(
+                                      (e) => DropdownMenuItem(
+                                        value: e,
+                                        child: Text(
+                                          e.name.toUpperCase(),
+                                        ),
                                       ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                DropdownButton(
-                                    value: _selectedC,
-                                    items: Category.values
-                                        .map(
-                                          (e) => DropdownMenuItem(
-                                            value: e,
-                                            child: Text(
-                                              e.name.toUpperCase(),
-                                            ),
-                                          ),
-                                        )
-                                        .toList(),
-                                    onChanged: (val) {
-                                      setState(() {
-                                        if (val == null) {
-                                          return;
-                                        }
-                                        _selectedC = val;
-                                      });
-                                    }),
-                                Spacer(),
-                                TextButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: Text('Cancel')),
-                                ElevatedButton(
-                                    onPressed: _onSave, child: Text('Save'))
-                              ],
-                            )
+                                    )
+                                    .toList(),
+                                onChanged: (val) {
+                                  setState(() {
+                                    if (val == null) {
+                                      return;
+                                    }
+                                    _selectedC = val;
+                                  });
+                                }),
+                            Spacer(),
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text('Cancel')),
+                            ElevatedButton(
+                                onPressed: _onSave, child: Text('Save'))
                           ],
                         )
-                      : Column(
+                      ],
+                    )
+                  : Column(
+                      children: [
+                        Row(
                           children: [
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: TextField(
-                                      controller: _controllerT,
-                                      maxLength: 50,
-                                      decoration:
-                                          InputDecoration(label: Text('title')),
-                                    ),
-                                  ),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextField(
+                                  controller: _controllerT,
+                                  maxLength: 50,
+                                  decoration:
+                                      InputDecoration(label: Text('title')),
                                 ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: TextField(
-                                      controller: _controllerA,
-                                      maxLength: 10,
-                                      keyboardType: TextInputType.number,
-                                      decoration: InputDecoration(
-                                        prefixText: "\$ ",
-                                        labelText: "amount",
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
-                            Row(
-                              children: [
-                                DropdownButton(
-                                    value: _selectedC,
-                                    items: Category.values
-                                        .map(
-                                          (e) => DropdownMenuItem(
-                                            value: e,
-                                            child: Text(
-                                              e.name.toUpperCase(),
-                                            ),
-                                          ),
-                                        )
-                                        .toList(),
-                                    onChanged: (val) {
-                                      setState(() {
-                                        if (val == null) {
-                                          return;
-                                        }
-                                        _selectedC = val;
-                                      });
-                                    }),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20.0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Text(_selectedDate == null
-                                          ? "Select Date"
-                                          : "${_selectedDate.toString().substring(0, 10)}"),
-                                      IconButton(
-                                        icon: Icon(Icons.calendar_month),
-                                        onPressed: _showDater,
-                                      ),
-                                    ],
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextField(
+                                  controller: _controllerA,
+                                  maxLength: 10,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    prefixText: "\$ ",
+                                    labelText: "amount",
                                   ),
                                 ),
-                                Spacer(),
-                                TextButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: Text('Cancel')),
-                                ElevatedButton(
-                                    onPressed: _onSave, child: Text('Save'))
-                              ],
-                            )
+                              ),
+                            ),
                           ],
-                        )),
+                        ),
+                        Row(
+                          children: [
+                            DropdownButton(
+                                value: _selectedC,
+                                items: Category.values
+                                    .map(
+                                      (e) => DropdownMenuItem(
+                                        value: e,
+                                        child: Text(
+                                          e.name.toUpperCase(),
+                                        ),
+                                      ),
+                                    )
+                                    .toList(),
+                                onChanged: (val) {
+                                  setState(() {
+                                    if (val == null) {
+                                      return;
+                                    }
+                                    _selectedC = val;
+                                  });
+                                }),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(_selectedDate == null
+                                      ? "Select Date"
+                                      : "${_selectedDate.toString().substring(0, 10)}"),
+                                  IconButton(
+                                    icon: Icon(Icons.calendar_month),
+                                    onPressed: _showDater,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Spacer(),
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text('Cancel')),
+                            ElevatedButton(
+                                onPressed: _onSave, child: Text('Save'))
+                          ],
+                        )
+                      ],
+                    ),
             ),
           ),
         ),

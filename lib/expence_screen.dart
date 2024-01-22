@@ -1,8 +1,8 @@
 import 'package:expence_tracker/widgets/add_expence.dart';
 import 'package:expence_tracker/widgets/expence_chart.dart';
 import 'package:expence_tracker/widgets/expence_list.dart';
-
 import 'package:flutter/material.dart';
+
 import 'models/expence_data.dart';
 
 class ExpenceScreen extends StatefulWidget {
@@ -169,13 +169,13 @@ class _ExpenceScreenState extends State<ExpenceScreen> {
                 _chartData() == null
                     ? const Placeholder()
                     : ExpenceChart(_chartData),
-                Expanded(child: mainContent),
+                mainContent,
               ],
             )
           : Row(
               children: [
-                Expanded(child: ExpenceChart(_chartData)),
-                Expanded(child: mainContent),
+                ExpenceChart(_chartData),
+                mainContent,
               ],
             ),
     );
